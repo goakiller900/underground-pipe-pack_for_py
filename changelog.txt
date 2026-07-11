@@ -1,4 +1,29 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.0
+Date: 2026-07-12
+  Features:
+    - Updated for Factorio 2.1, Pyanodon 3.1 and Advanced Fluid Handling 2.1.
+    - Published under the unique internal mod name underground-pipe-pack_for_py_plus.
+  Changes:
+    - Added explicit minimum versions for the Factorio 2.1 dependency set.
+    - Refactored tier adjustments with validation and deterministic prototype handling.
+    - Valve flow-rate changes now apply only to Advanced Fluid Handling valves.
+  Bugfixes:
+    - Flatten layered Pyanodon pipe graphics before adding direction arrows.
+    - Correct tier 3 directional sprite shifts for the Factorio 2.1 picture schema.
+    - Remove blacklisted recipe unlocks without leaving sparse effect arrays.
+---------------------------------------------------------------------------------------------------
+Version: 2.0.5
+Date: 2025-05-25
+  Changes:
+    - Adjusted for AfH 2.0.6 and base 2.0.52 - new valve prototype
+    - Valves' flow rate doubled compared to default AfH (max flow 12000/sec)
+---------------------------------------------------------------------------------------------------
+Version: 2.0.4
+Date: 2025-04-18
+  Changes:
+    - Default AFH underground lenghts option now extends all tiers by 1 tile
+---------------------------------------------------------------------------------------------------
 Version: 2.0.3
 Date: 2025-01-22
   Changes:
