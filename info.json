@@ -1,20 +1,19 @@
 {
-	"name": "underground-pipe-pack_for_py",
-	"version": "2.0.3",
-	"factorio_version": "2.0",
-	"title": "Advanced Fluid Handling For PyMods",
-	"author": "Dremon, Created by Sopel",
-	"contact": "",
-	"homepage": "",
-	"description": "Adds 3 tiers of underground pipe extenders and junctions for Pyanodon mods.",
-	"dependencies": [
-    	"base >= 2.0.28",
-    	"underground-pipe-pack >= 2.0.4",
-    	"pyhightech",
-        "pyindustry",
-        "? pyalienlife",
-        "? py_ht_pipes_reskin",
-		"? configurable-valves",
-        "! space-exploration"
-	]
+  "name": "underground-pipe-pack_for_py_plus",
+  "version": "2.1.0",
+  "factorio_version": "2.1",
+  "title": "Advanced Fluid Handling For PyMods Plus",
+  "author": "Dremon, created by Sopel; Factorio 2.1 continuation by goakiller900",
+  "contact": "",
+  "homepage": "https://github.com/goakiller900/underground-pipe-pack_for_py",
+  "description": "Adapts Advanced Fluid Handling's three pipe tiers, underground extenders, junctions, pumps, recipes and graphics for Pyanodon mods.",
+  "dependencies": [
+    "base >= 2.1.0",
+    "underground-pipe-pack >= 2.1.0",
+    "pyhightech >= 3.1.1",
+    "pyindustry >= 3.1.1",
+    "? pyalienlife",
+    "? py_ht_pipes_reskin",
+    "! space-exploration"
+  ]
 }
