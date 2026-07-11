@@ -1,188 +1,112 @@
-do
-    --local Color = require('__jalm__/stdlib/utils/color')
+if not settings.startup["afhfp-reskin-pipe-to-grounds"].value then
+    return
+end
 
-    if settings.startup["afhfp-reskin-pipe-to-grounds"].value then
-        local variants = {
-            ["one-to-one-forward"] = {
-                north = "S",
-                south = "N",
-                west = "E",
-                east = "W"
-            },
-            ["one-to-one-right"] = {
-                north = "W",
-                south = "E",
-                west = "S",
-                east = "N"
-            },
-            ["one-to-one-reverse"] = {
-                north = "N",
-                south = "S",
-                west = "W",
-                east = "E"
-            },
-            ["one-to-one-left"] = {
-                north = "E",
-                south = "W",
-                west = "N",
-                east = "S"
-            },
-            ["one-to-two-parallel"] = {
-                north = "NS",
-                south = "NS",
-                west = "EW",
-                east = "EW"
-            },
-            ["one-to-two-L-FR"] = {
-                north = "SW",
-                south = "NE",
-                west = "ES",
-                east = "NW"
-            },
-            ["one-to-two-perpendicular"] = {
-                north = "EW",
-                south = "EW",
-                west = "NS",
-                east = "NS"
-            },
-            ["one-to-two-L-RR"] = {
-                north = "NW",
-                south = "ES",
-                west = "SW",
-                east = "NE"
-            },
-            ["one-to-two-parallel-secondary"] = {
-                north = "NS",
-                south = "NS",
-                west = "EW",
-                east = "EW"
-            },
-            ["one-to-two-L-RL"] = {
-                north = "NE",
-                south = "SW",
-                west = "NW",
-                east = "ES"
-            },
-            ["one-to-two-perpendicular-secondary"] = {
-                north = "EW",
-                south = "EW",
-                west = "NS",
-                east = "NS"
-            },
-            ["one-to-two-L-FL"] = {
-                north = "ES",
-                south = "NW",
-                west = "NE",
-                east = "SW"
-            },
-            ["one-to-three-forward"] = {
-                north = "ESW",
-                south = "NEW",
-                west = "NES",
-                east = "NSW"
-            },
-            ["one-to-three-right"] = {
-                north = "NSW",
-                south = "NES",
-                west = "ESW",
-                east = "NEW"
-            },
-            ["one-to-three-reverse"] = {
-                north = "NEW",
-                south = "ESW",
-                west = "NSW",
-                east = "NES"
-            },
-            ["one-to-three-left"] = {
-                north = "NES",
-                south = "NSW",
-                west = "NEW",
-                east = "ESW"
-            },
-            ["one-to-four"] = {
-                north = "NESW",
-                south = "NESW",
-                west = "NESW",
-                east = "NESW"
-            },
-        }
+local variants = {
+    ["one-to-one-forward"] = {north = "S", south = "N", west = "E", east = "W"},
+    ["one-to-one-right"] = {north = "W", south = "E", west = "S", east = "N"},
+    ["one-to-one-reverse"] = {north = "N", south = "S", west = "W", east = "E"},
+    ["one-to-one-left"] = {north = "E", south = "W", west = "N", east = "S"},
+    ["one-to-two-parallel"] = {north = "NS", south = "NS", west = "EW", east = "EW"},
+    ["one-to-two-L-FR"] = {north = "SW", south = "NE", west = "ES", east = "NW"},
+    ["one-to-two-perpendicular"] = {north = "EW", south = "EW", west = "NS", east = "NS"},
+    ["one-to-two-L-RR"] = {north = "NW", south = "ES", west = "SW", east = "NE"},
+    ["one-to-two-parallel-secondary"] = {north = "NS", south = "NS", west = "EW", east = "EW"},
+    ["one-to-two-L-RL"] = {north = "NE", south = "SW", west = "NW", east = "ES"},
+    ["one-to-two-perpendicular-secondary"] = {north = "EW", south = "EW", west = "NS", east = "NS"},
+    ["one-to-two-L-FL"] = {north = "ES", south = "NW", west = "NE", east = "SW"},
+    ["one-to-three-forward"] = {north = "ESW", south = "NEW", west = "NES", east = "NSW"},
+    ["one-to-three-right"] = {north = "NSW", south = "NES", west = "ESW", east = "NEW"},
+    ["one-to-three-reverse"] = {north = "NEW", south = "ESW", west = "NSW", east = "NES"},
+    ["one-to-three-left"] = {north = "NES", south = "NSW", west = "NEW", east = "ESW"},
+    ["one-to-four"] = {north = "NESW", south = "NESW", west = "NESW", east = "NESW"},
+}
 
-        local tiers = {
-            [1] = {
-                base_pipe = "pipe-to-ground",
-                name = "",
-                color = {r=255,g=191,b=0,a=0.5},
-                shifts = {
-                    up = {0, 0},
-                    down = {0, 0},
-                    left = {0, 0},
-                    right = {0, 0}
-                },
-                distance = data.raw["pipe-to-ground"]["pipe-to-ground"].fluid_box.pipe_connections[2].max_underground_distance
-            },
-            [2] = {
-                base_pipe = "niobium-pipe-to-ground",
-                name = "-t2",
-                color = {r=227,g=38,b=45,a=0.5},
-                shifts = {
-                    up = {0, 0},
-                    down = {0, 0},
-                    left = {0, 0},
-                    right = {0, 0}
-                },
-                distance = data.raw["pipe-to-ground"]["niobium-pipe-to-ground"].fluid_box.pipe_connections[2].max_underground_distance
-            },
-            [3] = {
-                base_pipe = "ht-pipes-to-ground",
-                name = "-t3",
-                color = {r=38,g=173,b=227,a=0.5},
-                shifts = {
-                    up = {0, -0.25},
-                    down = {0, -0.28},
-                    left = {0, -0.25},
-                    right = {0, -0.25}
-                },
-                distance = data.raw["pipe-to-ground"]["ht-pipes-to-ground"].fluid_box.pipe_connections[2].max_underground_distance
-            }
-        }
+local zero_shifts = {
+    north = {0, 0},
+    east = {0, 0},
+    south = {0, 0},
+    west = {0, 0},
+}
 
-        if mods["py_ht_pipes_reskin"] then
-            tiers[3].shifts = tiers[2].shifts
+local tiers = {
+    [1] = {
+        base_pipe = "pipe-to-ground",
+        suffix = "",
+        tint = {r = 255, g = 191, b = 0, a = 0.5},
+        shifts = zero_shifts,
+    },
+    [2] = {
+        base_pipe = "niobium-pipe-to-ground",
+        suffix = "-t2",
+        tint = {r = 227, g = 38, b = 45, a = 0.5},
+        shifts = zero_shifts,
+    },
+    [3] = {
+        base_pipe = "ht-pipes-to-ground",
+        suffix = "-t3",
+        tint = {r = 38, g = 173, b = 227, a = 0.5},
+        shifts = {
+            north = {0, -0.25},
+            east = {0, -0.25},
+            south = {0, -0.28},
+            west = {0, -0.25},
+        },
+    },
+}
+
+if mods["py_ht_pipes_reskin"] then
+    tiers[3].shifts = zero_shifts
+end
+
+local function require_pipe(name)
+    local pipe = data.raw["pipe-to-ground"] and data.raw["pipe-to-ground"][name]
+    if not pipe then
+        error(("Advanced Fluid Handling For PyMods Plus expected pipe-to-ground prototype '%s'"):format(name))
+    end
+    return pipe
+end
+
+local function append_picture_layers(target, picture)
+    if picture.layers then
+        for _, layer in ipairs(picture.layers) do
+            target[#target + 1] = util.table.deepcopy(layer)
         end
-        
-        for name, dirmap in pairs(variants) do
-            for tier, tier_traits in pairs(tiers) do
-                local color = tier_traits.color
-                local fullname = name .. tier_traits.name .. "-pipe"
-                local p = data.raw["pipe-to-ground"][fullname]
-                local base = data.raw["pipe-to-ground"][tier_traits.base_pipe]
-                for dir, pic in pairs(p.pictures) do
-                    local curpic = util.table.deepcopy(base.pictures[dir])
-                    local arrows = "__underground-pipe-pack__/graphics/entity/arrows/hr-ug-arrow-" .. dirmap[dir] .. ".png"
-                    p.pictures[dir] = {
-                        layers = {
-                            curpic,
-                            {
-                                filename = arrows,
-                                priority = "extra-high",
-                                width = 96,
-                                height = 96,
-                                shift = tier_traits.shifts[dir],
-                                scale = 0.5,
-                                apply_runtime_tint = true,
-                                tint = color,
-                            }
-                        }
-                    }
+    else
+        target[#target + 1] = util.table.deepcopy(picture)
+    end
+end
 
-                    p.fluid_box.pipe_covers = util.table.deepcopy(base.fluid_box.pipe_covers)
---                    for k, v in ipairs(p.fluid_box.pipe_connections) do
---                        if v.max_underground_distance ~= nil then
---                            v.max_underground_distance = tier_traits.distance
---                        end
---                    end
-                end
+for base_name, direction_map in pairs(variants) do
+    for _, tier_number in ipairs({1, 2, 3}) do
+        local tier = tiers[tier_number]
+        local pipe = require_pipe(base_name .. tier.suffix .. "-pipe")
+        local source_pipe = require_pipe(tier.base_pipe)
+
+        for _, direction in ipairs({"north", "east", "south", "west"}) do
+            local source_picture = source_pipe.pictures and source_pipe.pictures[direction]
+            if not source_picture then
+                error(("Pipe-to-ground prototype '%s' has no %s picture"):format(tier.base_pipe, direction))
             end
+
+            local layers = {}
+            append_picture_layers(layers, source_picture)
+            layers[#layers + 1] = {
+                filename = "__underground-pipe-pack__/graphics/entity/arrows/hr-ug-arrow-"
+                    .. direction_map[direction]
+                    .. ".png",
+                priority = "extra-high",
+                width = 96,
+                height = 96,
+                shift = tier.shifts[direction],
+                scale = 0.5,
+                apply_runtime_tint = true,
+                tint = tier.tint,
+            }
+
+            pipe.pictures[direction] = {layers = layers}
         end
+
+        pipe.fluid_box.pipe_covers = util.table.deepcopy(source_pipe.fluid_box.pipe_covers)
     end
 end
