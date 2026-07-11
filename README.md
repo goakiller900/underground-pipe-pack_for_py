@@ -1,22 +1,39 @@
-# Advanced Fluid Handling For PyMods
+# Advanced Fluid Handling For PyMods Plus
 
-**Adds 3 tiers of underground pipe extenders and junctions for Pyanodon mods.**
+Unofficial Factorio 2.1 continuation of **Advanced Fluid Handling For PyMods**.
 
+This add-on adapts the three tiers from **Advanced Fluid Handling** to Pyanodon's iron, niobium and multipurpose pipe progression. It keeps the parent mod's prototype names and gameplay while adjusting underground distances, pipeline extents, recipes, technologies, pump behaviour, connection categories, graphics and valve throughput for the current Pyanodon mod set.
 
+## Requirements
 
-An updated addon to Advanced Fluid Handling mod that makes it more suitable for Pyanodon mods. Original version by Sopel is [here](https://mods.factorio.com/mod/advanced_fluid_handling_for_py)
+- Factorio 2.1
+- Advanced Fluid Handling 2.1 (`underground-pipe-pack`)
+- Pyanodons Industry 3.1.1 or newer
+- Pyanodons HighTech 3.1.1 or newer
 
-    Update for Factorio 2.0
-    Update for Pyanodon's braided pipes
-    Renamed "Tier 1" to "Iron"
-    Renamed "Tier 2" to "Niobium"
-    Renamed "Tier 3" to "Multipurpose"
-    Fix capitalization in the english locale
-    Adjust underground distances to match Pyanodon pipes
-    Adjust recipes to match Pyanodon mods
-    Adjust locale to match Pyanodon mods
-    Match underground pumps to vanilla pump
-    Remove 4-to-4 pipe
-    Optional setting to extend iron undergrounds a bit more to match default AFH settings
-    Optional setting to make the graphics the same as in standard AFH
+The required Advanced Fluid Handling 2.1 build is maintained at:
 
+`https://github.com/goakiller900/pipemod`
+
+## Changes from the original add-on
+
+- Updated for Factorio 2.1 and Pyanodon 3.1.
+- Uses the unique Mod Portal identifier `underground-pipe-pack_for_py_plus`.
+- Renames tiers to Iron, Niobium and Multipurpose through locale overrides.
+- Matches underground distances and pipeline extents to Pyanodon pipes.
+- Supports Pyanodon's optional braided-pipe connection categories.
+- Matches all underground pump tiers to the vanilla pump's speed and energy usage.
+- Removes the 4-to-4 pipe.
+- Doubles only Advanced Fluid Handling valve flow rates, rather than changing valves from unrelated mods.
+- Safely combines layered Pyanodon pipe graphics with Advanced Fluid Handling direction arrows.
+
+## Startup settings
+
+- **Reskin pipe-to-grounds to match Pyanodon pipes** — enabled by default.
+- **Make undergrounds longer by one tile** — disabled by default.
+
+## Attribution
+
+Original add-on concept and implementation by **Sopel**. Factorio 2.0 update by **Dremon**. Factorio 2.1 continuation by **goakiller900**.
+
+This continuation retains the original MIT license and does not claim ownership of the original work.
