@@ -127,4 +127,4 @@ jobs:
             "$CHECKSUM" \
             --target "$GITHUB_SHA" \
             --title "Advanced Fluid Handling Continued for PyMods version $VERSION" \
-            --notes "Automated Factorio 2.1 release for Advanced Fluid Handling Continued for PyMods version $VERSION. Requires Advanced Fluid Handling Continued and the listed Pyanodon dependencies. The attached ZIP is ready to place in the Factorio mods folder."
+            --notes "Automated Factorio 2.1 release for Advanced Fluid Handling Continued for PyMods version $VERSION. Requires the official Advanced Fluid Handling mod and the listed Pyanodon dependencies. The attached ZIP is ready to place in the Factorio mods folder."
