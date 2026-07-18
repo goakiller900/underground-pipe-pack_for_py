@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.2
+Date: 2026-07-18
+  Bugfixes:
+    - Fixed a malformed T1 underground pump icon assignment in data-updates.lua that caused a Lua syntax error during mod loading.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.1
 Date: 2026-07-18
   Changes:
