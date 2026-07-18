@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.3
+Date: 2026-07-18
+  Bugfixes:
+    - Fixed removal of Advanced Fluid Handling valve items without removing their Factorio 2.1 valve prototypes, which caused PyPostProcessing to fail while validating upgrade chains.
+    - Reworked prototype cleanup so removed recipes are also removed cleanly from technology unlock effects.
+    - Updated Advanced Fluid Handling graphics references to the new advanced-fluid-handling-continued mod namespace.
+    - Hardened PyMods pipe reskin handling for layered sprites and corrected directional sprite shifts.
+    - Restricted valve flow-rate adjustments to Advanced Fluid Handling valves only.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.2
 Date: 2026-07-18
   Bugfixes:
