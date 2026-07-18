@@ -1,6 +1,6 @@
 {
   "name": "advanced-fluid-handling-continued-for-py",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "factorio_version": "2.1",
   "title": "Advanced Fluid Handling Continued for PyMods",
   "author": "Dremon, created by Sopel; continued for Factorio 2.1 by goakiller900",
@@ -9,7 +9,7 @@
   "description": "Pyanodon compatibility addon for the official Advanced Fluid Handling mod. Adds and adjusts three tiers of underground pipe extenders and junctions for PyMods.",
   "dependencies": [
     "base >= 2.1",
-    "underground-pipe-pack >= 2.0.7",
+    "underground-pipe-pack >= 2.1.0",
     "pyhightech",
     "pyindustry",
     "? pyalienlife",
