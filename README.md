@@ -13,7 +13,7 @@ https://mods.factorio.com/mod/advanced_fluid_handling_for_py
 This continuation requires:
 
 * Factorio 2.1
-* Advanced Fluid Handling 2.0.7 or newer (`underground-pipe-pack`)
+* Advanced Fluid Handling 2.1.0 or newer (`underground-pipe-pack`)
 * Py HighTech
 * Py Industry
 
@@ -56,11 +56,11 @@ Internal mod name:
 
 Current version:
 
-`0.0.4`
+`0.0.5`
 
 Required Advanced Fluid Handling dependency:
 
-`underground-pipe-pack >= 2.0.7`
+`underground-pipe-pack >= 2.1.0`
 
 ## Builds and releases
 
@@ -68,13 +68,13 @@ Releases are built automatically by GitHub Actions.
 
 Each push to `main` is validated and packaged as a Factorio-ready ZIP archive using the version from `info.json`.
 
-For version `0.0.4`, the release archive is:
+For version `0.0.5`, the release archive is:
 
-`advanced-fluid-handling-continued-for-py_0.0.4.zip`
+`advanced-fluid-handling-continued-for-py_0.0.5.zip`
 
 The release workflow also creates a SHA-256 checksum and the Git tag:
 
-`afhc-py-v0.0.4`
+`afhc-py-v0.0.5`
 
 To build the archive locally:
 
