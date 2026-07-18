@@ -1,0 +1,130 @@
+name: Build and release Advanced Fluid Handling Continued for PyMods
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: afhc-py-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Factorio 2.1 mod archive
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read mod metadata
+        id: metadata
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+
+          info = json.loads(Path("info.json").read_text(encoding="utf-8-sig"))
+          name = info["name"]
+          version = info["version"]
+          archive = f"{name}_{version}.zip"
+          tag = f"afhc-py-v{version}"
+
+          print(f"name={name}")
+          print(f"version={version}")
+          print(f"archive={archive}")
+          print(f"checksum={archive}.sha256")
+          print(f"tag={tag}")
+          PY
+
+      - name: Build AFHC for PyMods
+        run: python scripts/build_afhc_py.py
+
+      - name: Verify Factorio archive
+        shell: bash
+        env:
+          ARCHIVE: dist/${{ steps.metadata.outputs.archive }}
+          MOD_NAME: ${{ steps.metadata.outputs.name }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          test -f "$ARCHIVE"
+          unzip -t "$ARCHIVE"
+
+          python - <<'PY'
+          import os
+          import zipfile
+          from pathlib import PurePosixPath
+
+          archive_path = os.environ["ARCHIVE"]
+          mod_name = os.environ["MOD_NAME"]
+          version = os.environ["VERSION"]
+          expected_root = f"{mod_name}_{version}"
+          legacy_namespace = b"__underground-pipe-pack_for_py__/"
+
+          with zipfile.ZipFile(archive_path) as archive:
+              names = archive.namelist()
+              roots = {PurePosixPath(name).parts[0] for name in names if name}
+              if roots != {expected_root}:
+                  raise SystemExit(f"Unexpected archive root(s): {sorted(roots)}")
+
+              info_path = f"{expected_root}/info.json"
+              if info_path not in names:
+                  raise SystemExit(f"Missing {info_path}")
+
+              stale = []
+              for name in names:
+                  if legacy_namespace in archive.read(name):
+                      stale.append(name)
+
+              if stale:
+                  raise SystemExit("Legacy mod namespace remains in: " + ", ".join(stale))
+          PY
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.metadata.outputs.name }}_${{ steps.metadata.outputs.version }}_${{ github.sha }}
+          path: |
+            dist/${{ steps.metadata.outputs.archive }}
+            dist/${{ steps.metadata.outputs.checksum }}
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.metadata.outputs.tag }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+          ARCHIVE: dist/${{ steps.metadata.outputs.archive }}
+          CHECKSUM: dist/${{ steps.metadata.outputs.checksum }}
+        run: |
+          set -euo pipefail
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; build succeeded, so no new release is needed until info.json is bumped."
+            exit 0
+          fi
+
+          gh release create "$TAG" \
+            "$ARCHIVE" \
+            "$CHECKSUM" \
+            --target "$GITHUB_SHA" \
+            --title "Advanced Fluid Handling Continued for PyMods version $VERSION" \
+            --notes "Automated Factorio 2.1 release for Advanced Fluid Handling Continued for PyMods version $VERSION. Requires Advanced Fluid Handling Continued and the listed Pyanodon dependencies. The attached ZIP is ready to place in the Factorio mods folder."
