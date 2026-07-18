@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.1
+Date: 2026-07-18
+  Changes:
+    - Renamed the mod to Advanced Fluid Handling Continued for PyMods.
+    - Added a unique internal mod name: advanced-fluid-handling-continued-for-py.
+    - Updated the mod for Factorio 2.1.
+    - Changed the core dependency from underground-pipe-pack to Advanced Fluid Handling Continued.
+    - Added incompatibility with the original underground-pipe-pack_for_py addon.
+    - Added an automated deterministic ZIP build and tagged GitHub release workflow.
+---------------------------------------------------------------------------------------------------
 Version: 2.0.3
 Date: 2025-01-22
   Changes:
