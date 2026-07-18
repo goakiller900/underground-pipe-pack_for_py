@@ -58,10 +58,10 @@ def load_metadata() -> dict[str, object]:
         fail("info.json must depend on Factorio base 2.1")
 
     if not any(
-        isinstance(dep, str) and dep.startswith("advanced-fluid-handling-continued")
+        isinstance(dep, str) and dep.startswith("underground-pipe-pack")
         for dep in dependencies
     ):
-        fail("info.json must depend on Advanced Fluid Handling Continued")
+        fail("info.json must depend on the official Advanced Fluid Handling mod")
 
     if "! underground-pipe-pack_for_py" not in dependencies:
         fail("info.json must be incompatible with underground-pipe-pack_for_py")
