@@ -92,7 +92,7 @@ for base_name, direction_map in pairs(variants) do
             local layers = {}
             append_picture_layers(layers, source_picture)
             layers[#layers + 1] = {
-                filename = "__advanced-fluid-handling-continued__/graphics/entity/arrows/hr-ug-arrow-"
+                filename = "__underground-pipe-pack__/graphics/entity/arrows/hr-ug-arrow-"
                     .. direction_map[direction]
                     .. ".png",
                 priority = "extra-high",
