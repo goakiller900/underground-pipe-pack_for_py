@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.4
+Date: 2026-07-18
+  Changes:
+    - Changed the parent dependency back to the official Advanced Fluid Handling mod (underground-pipe-pack) version 2.0.7 or newer.
+    - Updated Advanced Fluid Handling graphics references to use the official mod namespace again.
+    - Updated build validation, release notes and documentation for the official parent dependency.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.3
 Date: 2026-07-18
   Bugfixes:
