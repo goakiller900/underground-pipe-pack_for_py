@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.5
+Date: 2026-07-18
+  Changes:
+    - Updated the required Advanced Fluid Handling dependency to the official 2.1.0 release or newer.
+    - Confirmed the addon loads successfully with Advanced Fluid Handling 2.1.0 from the Factorio Mod Portal in the tested PyMods setup.
+    - Updated release documentation and build validation for the corrected parent dependency.
+---------------------------------------------------------------------------------------------------
 Version: 0.0.4
 Date: 2026-07-18
   Changes:
