@@ -251,7 +251,7 @@ do
             v.pumping_speed = defspeed
             v.energy_usage = defenerg
 --            v.icons = { {icon = v.icon, icon_size = v.icon_size, tint = {r=255,g=191,b=0} } }
-            v.icon.sp  icons = { {icon = v.icon, icon_size = v.icon_size, tint = {r=255,g=191,b=0} } }
+            v.icons = { {icon = v.icon, icon_size = v.icon_size, tint = {r=255,g=191,b=0} } }
             for _, animlayers in pairs(v.animations) do
                 for _, layer in pairs(animlayers.layers) do
                     if string.find(layer.filename, 'hr-ug-arrow', 1, true) ~= nil then
